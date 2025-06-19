@@ -15,7 +15,6 @@ Output: [1,2]
 Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
- 
 
 Constraints:
 2 <= nums.length <= 104
@@ -27,17 +26,22 @@ Only one valid answer exists.
 class Solution:
     def twoSum(self, nums: list[int], target: int) -> list[int]:
         num_map = {} #Initializes an empty dictionary, maps each number (num) to its index in nums, to quickly check if a complement exists
-        for i, num in enumerate(nums):
-            print(f"i-{i} num-{num}")
-            diff = target - num
-            print("Difference: " + str(diff) )
+        print(f"Initialised empty dictionary: {num_map}")
+        for i, num in enumerate(nums): #for each value in the input array
+            print(f"Current value i: {nums[i]}, searching for difference {target-num}")
+            diff = target - num #Check if the targe - current number value ie is the difference number present
             if diff in num_map:
+                print(f"Difference number: {diff} found at position: {num_map[diff]}")
                 return [num_map[diff], i]
             num_map[num] = i
+            print(f"Difference number not found, Current dictionary: {num_map}")
 
 solution = Solution() # Instance of class Solution - solution is the object of Solution()
-run = solution.twoSum([2,7,11,15], 9) #Calling the method of the created object
+run = solution.twoSum([15,12,7,2], 9) #Calling the method of the created object
 print(run)
+
+#Time Complixity: The main thing to notice is that we loop through the list once, and each lookup in the hash map is instant (constant time). So, if there are n numbers, we do operations. That’s O(n) time.
+
 '''
 Parameters:
 nums: a list of integers (the input array).
@@ -45,5 +49,4 @@ target: the integer target sum.
 
 Returns:
 A list of two indices whose corresponding numbers in nums add up to target.
-
 '''
